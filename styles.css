@@ -24,14 +24,7 @@
   --radius: 24px;
   color-scheme: light;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0d1013; --surface: #0d1013; --tile: #171b20; --ink: #f1f3f5; --ink-2: #c3c9d0; --muted: #8a929c;
-    --line: #262b32; --accent: #3ddc97; --jade: #3ddc97; --accent-soft: #11301f; --warn: #ff7a5c;
-    --mint: #12301f; --sky: #132840; --butter: #342c10; --coral: #3a1d17; --lilac: #231e44;
-    color-scheme: dark;
-  }
-}
+/* Light is the default for everyone; dark only when the visitor picks it with the toggle */
 :root[data-theme="dark"] {
   --bg: #0d1013; --surface: #0d1013; --tile: #171b20; --ink: #f1f3f5; --ink-2: #c3c9d0; --muted: #8a929c;
   --line: #262b32; --accent: #3ddc97; --jade: #3ddc97; --accent-soft: #11301f; --warn: #ff7a5c;
@@ -58,7 +51,7 @@ button { font: inherit; color: inherit; }
 }
 .ico.sm { width: .85em; height: .85em; }
 
-.wrap { width: 100%; max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+.wrap { width: 100%; max-width: 1360px; margin: 0 auto; padding: 0 clamp(20px, 3.5vw, 56px); }
 .muted { color: var(--muted); }
 
 /* NAV */
@@ -698,3 +691,7 @@ h1 { font-family: var(--serif); font-weight: 800; font-size: clamp(46px, 6.4vw, 
   .project.wide { display: flex; flex-direction: column; }
 }
 .path p strong { color: var(--ink); font-weight: 700; }
+
+/* PIXEL SNOW background (canvas behind everything; tiles stay opaque on top) */
+#snow { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+main, .footer { position: relative; z-index: 1; }

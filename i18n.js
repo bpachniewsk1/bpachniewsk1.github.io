@@ -12,7 +12,7 @@
     "link.demo": "Live-Demo",
     "hero.lede": "Informatik-Masterstudent an der TU&nbsp;Dresden. Ich lerne, Maschinen <em>sehen</em> und <em>handeln</em> zu lassen — Machine Learning, Computer Vision und Robotik — nach drei Jahren, in denen ich in der Industrie Software und Datenpipelines gebaut habe.",
     "hero.cta": "Kontakt aufnehmen",
-    "hero.cv": "Lebenslauf",
+    "hero.cv": "Lebenslauf (EN)",
     "arm.sorted": "sortiert",
     "fact.study": "Studium",
     "fact.studyV": "M.Sc. Informatik",

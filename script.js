@@ -4,10 +4,10 @@
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 
   /* ---------- Theme toggle ---------- */
-  try { const saved = localStorage.getItem("theme"); if (saved) root.dataset.theme = saved; } catch (_) {}
+  // Light by default (not following the device setting); dark only if the visitor chose it.
+  try { if (localStorage.getItem("theme") === "dark") root.dataset.theme = "dark"; } catch (_) {}
   $(".theme-toggle").addEventListener("click", () => {
-    const isDark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-    root.dataset.theme = isDark ? "light" : "dark";
+    root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
     try { localStorage.setItem("theme", root.dataset.theme); } catch (_) {}
   });
 
@@ -429,6 +429,56 @@
       $("img", box).alt = mains[cur].alt;
       box.showModal();
     });
+  })();
+
+  /* ---------- Pixel snow background ---------- */
+  (function snow() {
+    const cv = $("#snow");
+    if (!cv) return;
+    const ctx = cv.getContext("2d");
+    const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const P = 3;                        // pixel size: flakes snap to a 3px grid
+    let w, h, flakes = [];
+    const make = (y) => ({
+      x: Math.random() * w, y: y ?? Math.random() * h,
+      s: Math.random() < 0.25 ? 2 : 1,  // big flakes are 2x2 "pixels"
+      v: 12 + Math.random() * 22,       // fall speed px/s (slow)
+      a: Math.random() * Math.PI * 2, f: 0.4 + Math.random() * 0.8,
+    });
+    function resize() {
+      const dpr = Math.min(2, devicePixelRatio || 1);
+      w = innerWidth; h = innerHeight;
+      cv.width = w * dpr; cv.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const n = Math.min(140, Math.round((w * h) / 12000));
+      flakes = Array.from({ length: n }, () => make());
+      draw();
+    }
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      const dark = root.dataset.theme === "dark";
+      ctx.fillStyle = dark ? "rgba(225,235,245,.45)" : "rgba(120,150,185,.28)";
+      for (const fl of flakes) {
+        const sz = P * fl.s;
+        ctx.fillRect(Math.round(fl.x / P) * P, Math.round(fl.y / P) * P, sz, sz);
+      }
+    }
+    let last = performance.now();
+    function tick(now) {
+      requestAnimationFrame(tick);
+      const dt = Math.min(0.05, (now - last) / 1000); last = now;
+      if (document.hidden) return;
+      for (const fl of flakes) {
+        fl.a += dt * fl.f;
+        fl.y += fl.v * dt;
+        fl.x += Math.sin(fl.a) * 8 * dt;
+        if (fl.y > h + 6) Object.assign(fl, make(-6));
+      }
+      draw();
+    }
+    addEventListener("resize", resize);
+    resize();
+    if (!still) requestAnimationFrame(tick);
+    else $(".theme-toggle").addEventListener("click", draw);
   })();
 
   $("#year").textContent = new Date().getFullYear();
