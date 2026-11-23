@@ -1,0 +1,11 @@
+# Allow-list: this repo is a public website (GitHub Pages).
+# Everything is ignored by default; only the files listed below can be committed.
+/*
+!/.gitignore
+!/.nojekyll
+!/index.html
+!/styles.css
+!/script.js
+!/i18n.js
+!/assets/
+.DS_Store
