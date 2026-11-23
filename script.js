@@ -408,6 +408,82 @@
     box.addEventListener("click", (e) => { if (e.target === box) box.close(); });
   })();
 
+  /* ---------- Neighbourhood attention diagram + colorization tabs ---------- */
+  (function natten() {
+    const card = $("#natten");
+    if (!card) return;
+    const tabs = $$(".shot-tabs .mini", card), panes = $$(".col-pane", card);
+    tabs.forEach((t, i) => t.addEventListener("click", () => {
+      tabs.forEach((x, k) => { x.classList.toggle("is-on", k === i); x.setAttribute("aria-selected", String(k === i)); });
+      panes.forEach((x, k) => x.classList.toggle("is-on", k === i));
+    }));
+
+
+    // Results: real model outputs from the report
+    const resRow = $("#res-row"), resCap = $("#res-cap");
+    let ex = "barn";
+    const files = ["input", "300k", "500k", "1m2", "truth"];
+    function renderRes() {
+      const labels = I18N.t("res.labels");
+      resRow.innerHTML = files.map((f, i) =>
+        `<figure class="${i === 4 ? "truth" : ""}"><img src="assets/natten/${ex}-${f}.jpg" alt="${labels[i]}" loading="lazy" /><figcaption>${labels[i]}</figcaption></figure>`).join("");
+      resCap.textContent = I18N.t("res.cap")[ex];
+    }
+    $$("#res-ex .mini", card).forEach((b) => b.addEventListener("click", () => {
+      ex = b.dataset.ex;
+      $$("#res-ex .mini", card).forEach((x) => x.classList.toggle("is-on", x === b));
+      renderRes();
+    }));
+    document.addEventListener("langchange", renderRes);
+    renderRes();
+    // architecture figure opens in the lightbox
+    const figBtn = $(".arch-fig", card), box = $("#lightbox");
+    figBtn.addEventListener("click", () => { $("img", box).src = $("img", figBtn).src; $("img", box).alt = $("img", figBtn).alt; box.showModal(); });
+
+    const grid = $("#na-grid"), text = $("#na-text");
+    const C = 16, R = 9, K = 5, N = C * R;
+    const cells = [];
+    for (let i = 0; i < N; i++) { const c = document.createElement("span"); grid.appendChild(c); cells.push(c); }
+    let mode = "local", q = { x: 5, y: 4 }, userMoved = false;
+    // NATTEN keeps the window size constant: at the borders the window shifts instead of shrinking
+    const start = (v, max) => Math.max(0, Math.min(v - (K >> 1), max - K));
+    function render() {
+      const sx = start(q.x, C), sy = start(q.y, R);
+      cells.forEach((c, i) => {
+        const x = i % C, y = (i / C) | 0;
+        const inWin = mode === "global" || (x >= sx && x < sx + K && y >= sy && y < sy + K);
+        c.className = (x === q.x && y === q.y) ? "q" : inWin ? "w" : "";
+      });
+      text.textContent = I18N.t(mode === "global" ? "na.global" : "na.local", { k: K * K, n: N });
+    }
+    grid.addEventListener("pointermove", (e) => {
+      const i = cells.indexOf(e.target);
+      if (i < 0) return;
+      userMoved = true;
+      q = { x: i % C, y: (i / C) | 0 };
+      render();
+    });
+    grid.addEventListener("pointerdown", (e) => { const i = cells.indexOf(e.target); if (i >= 0) { userMoved = true; q = { x: i % C, y: (i / C) | 0 }; render(); } });
+    $$(".na-ctrl .mini", card).forEach((b) => b.addEventListener("click", () => {
+      mode = b.dataset.mode;
+      $$(".na-ctrl .mini", card).forEach((x) => x.classList.toggle("is-on", x === b));
+      render();
+    }));
+    document.addEventListener("langchange", render);
+    // gentle wander until the visitor takes over
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const path = [[5, 4], [8, 3], [12, 4], [15, 8], [11, 7], [6, 6], [1, 2], [0, 0], [3, 1]];
+      let step = 0;
+      setInterval(() => {
+        if (userMoved || mode !== "local" || !panes[0].classList.contains("is-on")) return;
+        step = (step + 1) % path.length;
+        q = { x: path[step][0], y: path[step][1] };
+        render();
+      }, 1400);
+    }
+    render();
+  })();
+
   /* ---------- Hackathon photo gallery ---------- */
   (function gallery() {
     const g = $("#gallery");
