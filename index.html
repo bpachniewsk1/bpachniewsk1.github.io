@@ -11,8 +11,8 @@
   <!-- Fonts are self-hosted (no requests to Google, GDPR-friendly) -->
   <link rel="preload" href="assets/fonts/figtree-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/bricolage-grotesque-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/fonts/fonts.css?v=4" />
-  <link rel="stylesheet" href="styles.css?v=4" />
+  <link rel="stylesheet" href="assets/fonts/fonts.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=5" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231c1b19'/><text x='16' y='22' font-family='Georgia,serif' font-size='17' text-anchor='middle' fill='%23f6f4ef'>bp</text></svg>" />
 </head>
 <body>
@@ -87,7 +87,7 @@
         <div class="hero-links">
           <a class="btn btn-solid" href="mailto:bpachniewski@gmail.com"><svg class="ico"><use href="#i-mail"/></svg><span data-i18n="hero.cta">Get in touch</span></a>
           <a class="btn" href="https://www.linkedin.com/in/bartosz-pachniewski-324a39223/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-linkedin"/></svg>LinkedIn</a>
-          <a class="btn" href="Bartosz_Pachniewski_CV.pdf?v=4" target="_blank" rel="noopener"><svg class="ico"><use href="#i-file"/></svg><span data-i18n="hero.cv">CV</span></a>
+          <a class="btn" href="Bartosz_Pachniewski_CV.pdf?v=5" target="_blank" rel="noopener"><svg class="ico"><use href="#i-file"/></svg><span data-i18n="hero.cv">CV</span></a>
         </div>
       </div>
 
@@ -128,7 +128,7 @@
           <span class="stage-status" id="arm-status" aria-live="polite">tap an item to sort</span>
           <span class="stage-actions">
             <button type="button" class="mini is-on" id="vision-toggle" aria-pressed="true"><svg class="ico"><use href="#i-eye"/></svg>Vision</button>
-            <button type="button" class="mini" id="auto-toggle" aria-pressed="false"><svg class="ico"><use href="#i-play"/></svg>Auto</button>
+            <button type="button" class="mini is-on" id="auto-toggle" aria-pressed="true"><svg class="ico"><use href="#i-pause"/></svg>Auto</button>
           </span>
         </figcaption>
       </figure>
@@ -223,11 +223,18 @@
           <ul class="tags"><li>PyTorch</li><li>NATTEN / DiNAT</li><li>DDP</li><li>2× H100</li><li>Weights &amp; Biases</li></ul>
           <div class="wide-media">
             <div class="shot-tabs" role="tablist" aria-label="Colorization project views">
-              <button role="tab" class="mini is-on" aria-selected="true" data-pane="0" data-i18n="col.tabIdea">The idea</button>
+              <button role="tab" class="mini is-on" aria-selected="true" data-pane="2" data-i18n="col.tabRes">Results</button>
+              <button role="tab" class="mini" aria-selected="false" data-pane="0" data-i18n="col.tabIdea">The idea</button>
               <button role="tab" class="mini" aria-selected="false" data-pane="1" data-i18n="col.tabArch">Architecture</button>
-              <button role="tab" class="mini" aria-selected="false" data-pane="2" data-i18n="col.tabRes">Results</button>
             </div>
-            <div class="col-pane is-on" data-pane="0">
+            <div class="col-pane is-on" data-pane="2">
+              <div class="na res" id="res">
+                <div class="na-ctrl" id="res-ex">
+                  <button type="button" class="mini is-on" data-ex="barn" data-i18n="res.barn">Barn</button>
+                  <button type="button" class="mini" data-ex="ambulance" data-i18n="res.ambulance">Ambulance</button>
+                  <button type="button" class="mini" data-ex="fireboat" data-i18n="res.fireboat">Fireboat</button>
+                  <button type="button" class="mini" data-ex="shark" data-i18n="res.shark">Shark</button>
+                  <div class="col-pane" data-pane="0">
               <div class="na" id="na">
                 <div class="na-grid" id="na-grid" aria-hidden="true"></div>
                 <div class="na-ctrl">
@@ -259,14 +266,7 @@
                 <p class="na-note" data-i18n="arch.fig">From my report: dilation spreads the same 7×7 window over a larger area.</p>
               </div>
             </div>
-            <div class="col-pane" data-pane="2">
-              <div class="na res" id="res">
-                <div class="na-ctrl" id="res-ex">
-                  <button type="button" class="mini is-on" data-ex="barn" data-i18n="res.barn">Barn</button>
-                  <button type="button" class="mini" data-ex="ambulance" data-i18n="res.ambulance">Ambulance</button>
-                  <button type="button" class="mini" data-ex="fireboat" data-i18n="res.fireboat">Fireboat</button>
-                  <button type="button" class="mini" data-ex="shark" data-i18n="res.shark">Shark</button>
-                </div>
+          </div>
                 <div class="res-row" id="res-row"></div>
                 <p class="na-text" id="res-cap" aria-live="polite"></p>
                 <div class="res-stats">
@@ -498,7 +498,7 @@
     <span><svg class="ico"><use href="#i-pin"/></svg><span data-i18n="ft">Dresden · always learning</span></span>
   </footer>
 
-  <script src="i18n.js?v=4"></script>
-  <script src="script.js?v=4"></script>
+  <script src="i18n.js?v=5"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>

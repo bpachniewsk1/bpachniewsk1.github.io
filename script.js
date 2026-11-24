@@ -138,7 +138,7 @@
     let task = null;
     let pointer = null, clickPt = null;
     let paused = false;
-    let auto = false;
+    let auto = true; // sorts on its own from the start; the Auto button pauses it
     let sorted = 0;
     let beltOffset = 0;
 
@@ -320,6 +320,9 @@
 
     // Only do the work while visible
     new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(stage);
+
+    // Auto-sort is on by default: kick off the first pick shortly after load
+    setTimeout(() => { if (auto && !task && belt[0]) requestSort(belt[0]); }, 1200);
   })();
 
   /* ---------- Colorization compare slider ---------- */
@@ -413,6 +416,7 @@
     const card = $("#natten");
     if (!card) return;
     const tabs = $$(".shot-tabs .mini", card), panes = $$(".col-pane", card);
+    const ideaPane = $('.col-pane[data-pane="0"]', card);
     tabs.forEach((t, i) => t.addEventListener("click", () => {
       tabs.forEach((x, k) => { x.classList.toggle("is-on", k === i); x.setAttribute("aria-selected", String(k === i)); });
       panes.forEach((x, k) => x.classList.toggle("is-on", k === i));
@@ -475,7 +479,7 @@
       const path = [[5, 4], [8, 3], [12, 4], [15, 8], [11, 7], [6, 6], [1, 2], [0, 0], [3, 1]];
       let step = 0;
       setInterval(() => {
-        if (userMoved || mode !== "local" || !panes[0].classList.contains("is-on")) return;
+        if (userMoved || mode !== "local" || !ideaPane.classList.contains("is-on")) return;
         step = (step + 1) % path.length;
         q = { x: path[step][0], y: path[step][1] };
         render();
