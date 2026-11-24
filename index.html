@@ -11,8 +11,8 @@
   <!-- Fonts are self-hosted (no requests to Google, GDPR-friendly) -->
   <link rel="preload" href="assets/fonts/figtree-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/bricolage-grotesque-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/fonts/fonts.css?v=5" />
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="assets/fonts/fonts.css?v=6" />
+  <link rel="stylesheet" href="styles.css?v=6" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231c1b19'/><text x='16' y='22' font-family='Georgia,serif' font-size='17' text-anchor='middle' fill='%23f6f4ef'>bp</text></svg>" />
 </head>
 <body>
@@ -87,7 +87,7 @@
         <div class="hero-links">
           <a class="btn btn-solid" href="mailto:bpachniewski@gmail.com"><svg class="ico"><use href="#i-mail"/></svg><span data-i18n="hero.cta">Get in touch</span></a>
           <a class="btn" href="https://www.linkedin.com/in/bartosz-pachniewski-324a39223/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-linkedin"/></svg>LinkedIn</a>
-          <a class="btn" href="Bartosz_Pachniewski_CV.pdf?v=5" target="_blank" rel="noopener"><svg class="ico"><use href="#i-file"/></svg><span data-i18n="hero.cv">CV</span></a>
+          <a class="btn" href="Bartosz_Pachniewski_CV.pdf?v=6" target="_blank" rel="noopener"><svg class="ico"><use href="#i-file"/></svg><span data-i18n="hero.cv">CV</span></a>
         </div>
       </div>
 
@@ -171,6 +171,12 @@
           <h3 data-i18n="path.4h">Learning machines</h3>
           <p data-i18n="path.4p">Master's focus on <strong>machine learning</strong>, <strong>software engineering</strong> and <strong>systems engineering</strong> — from transformers for colorization to detection models on a real robot arm.</p>
         </li>
+        <li class="reveal is-next">
+          <span class="path-node"><svg class="ico"><use href="#i-globe"/></svg></span>
+          <span class="path-year" data-i18n="path.5y">Feb – Jul 2027 · next</span>
+          <h3 data-i18n="path.5h">Exchange in Taiwan</h3>
+          <p data-i18n="path.5p">Exchange semester at <strong>National Cheng Kung University (NCKU)</strong> in Tainan, Taiwan — and a chance to put my Chinese to real use.</p>
+        </li>
       </ol>
     </section>
 
@@ -234,7 +240,18 @@
                   <button type="button" class="mini" data-ex="ambulance" data-i18n="res.ambulance">Ambulance</button>
                   <button type="button" class="mini" data-ex="fireboat" data-i18n="res.fireboat">Fireboat</button>
                   <button type="button" class="mini" data-ex="shark" data-i18n="res.shark">Shark</button>
-                  <div class="col-pane" data-pane="0">
+                </div>
+                <div class="res-row" id="res-row"></div>
+                <p class="na-text" id="res-cap" aria-live="polite"></p>
+                <div class="res-stats">
+                  <div><b>0.13</b><span data-i18n="res.s1">colourfulness (truth 0.14, grey baseline 0.00)</span></div>
+                  <div><b>31.15 → 30.08</b><span data-i18n="res.s2">validation loss, 300k → 1.2M images</span></div>
+                  <div><b>22.99</b><span data-i18n="res.s3">PSNR(ab) vs. 22.81 for the grey baseline</span></div>
+                </div>
+                <p class="na-note" data-i18n="res.note">Real outputs of my DiNAT model on random ImageNet validation images (64×64), from my report.</p>
+              </div>
+            </div>
+            <div class="col-pane" data-pane="0">
               <div class="na" id="na">
                 <div class="na-grid" id="na-grid" aria-hidden="true"></div>
                 <div class="na-ctrl">
@@ -264,17 +281,6 @@
                 <p class="na-text" data-i18n="arch.text">Hourglass encoder–decoder: every context block is a DiNAT block (window 7, RoPE, QK-norm). The bottleneck grows its dilation (1, 2, 2) so the receptive field widens at no extra cost. The loss is a class-rebalanced cross-entropy so rare, vivid colours aren't drowned out by grey.</p>
                 <button type="button" class="arch-fig" aria-label="Open figure full size"><img src="assets/natten/dinat-dilation.jpg" alt="Dilated neighbourhood attention: the attention window spreads out as the dilation factor grows from 1 to 4" loading="lazy" /></button>
                 <p class="na-note" data-i18n="arch.fig">From my report: dilation spreads the same 7×7 window over a larger area.</p>
-              </div>
-            </div>
-          </div>
-                <div class="res-row" id="res-row"></div>
-                <p class="na-text" id="res-cap" aria-live="polite"></p>
-                <div class="res-stats">
-                  <div><b>0.13</b><span data-i18n="res.s1">colourfulness (truth 0.14, grey baseline 0.00)</span></div>
-                  <div><b>31.15 → 30.08</b><span data-i18n="res.s2">validation loss, 300k → 1.2M images</span></div>
-                  <div><b>22.99</b><span data-i18n="res.s3">PSNR(ab) vs. 22.81 for the grey baseline</span></div>
-                </div>
-                <p class="na-note" data-i18n="res.note">Real outputs of my DiNAT model on random ImageNet validation images (64×64), from my report.</p>
               </div>
             </div>
           </div>
@@ -375,7 +381,7 @@
     <section id="experience" class="wrap section">
       <header class="section-head reveal">
         <h2 data-i18n="exp.h">Experience</h2>
-        <p class="section-note" data-i18n="exp.note">3+ years of professional software engineering experience, alongside my studies.</p>
+        <p class="section-note" data-i18n="exp.note"><strong class="hl">3+ years</strong> of professional software engineering experience, alongside my studies.</p>
       </header>
 
       <div class="timeline">
@@ -425,6 +431,12 @@
             <p class="edu-title" data-i18n="edu.2t">B.Sc. Media Computer Science</p>
             <p class="muted">TU Dresden · 2020 — 2025</p>
             <p data-i18n="edu.2p">Thesis on context-oriented modelling and simulation of renewable energy facilities.</p>
+          </div>
+          <div>
+            <svg class="ico edu-ico"><use href="#i-globe"/></svg>
+            <p class="edu-title" data-i18n="edu.3t">Exchange semester</p>
+            <p class="muted">NCKU, Tainan, Taiwan · Feb — Jul 2027</p>
+            <p data-i18n="edu.3p">National Cheng Kung University — upcoming exchange as part of my master's.</p>
           </div>
         </div>
       </div>
@@ -498,7 +510,7 @@
     <span><svg class="ico"><use href="#i-pin"/></svg><span data-i18n="ft">Dresden · always learning</span></span>
   </footer>
 
-  <script src="i18n.js?v=5"></script>
-  <script src="script.js?v=5"></script>
+  <script src="i18n.js?v=6"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>

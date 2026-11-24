@@ -33,7 +33,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+html { scroll-behavior: smooth; scroll-padding-top: 104px; }
 body {
   margin: 0; background: var(--bg); color: var(--ink);
   font-family: var(--sans); font-size: 16px; line-height: 1.6;
@@ -744,3 +744,35 @@ main, .footer { position: relative; z-index: 1; }
 /* Desktop scale-up: the wide layout looked "zoomed out" on laptops and big monitors */
 @media (min-width: 1100px) { body { zoom: 1.1; } }
 @media (min-width: 1700px) { body { zoom: 1.2; } }
+
+/* NAV — larger (~50%) */
+.nav-inner { height: 92px; gap: 28px; }
+.logo { font-size: 38px; }
+.nav nav { gap: 6px; }
+.nav nav a { font-size: 19px; padding: 9px 18px; }
+.lang-toggle { font-size: 15px; padding: 4px; }
+.lang-toggle span { padding: 8px 14px; }
+.theme-toggle { width: 50px; height: 50px; }
+.theme-toggle .ico { width: 22px; height: 22px; }
+@media (max-width: 640px) {
+  .nav-inner { height: 68px; }
+  .logo { font-size: 30px; }
+  .lang-toggle { font-size: 13px; }
+  .lang-toggle span { padding: 6px 11px; }
+  .theme-toggle { width: 40px; height: 40px; }
+}
+
+/* PATH — five steps, last one upcoming */
+.path { grid-template-columns: repeat(5, 1fr); }
+.path li.is-next .path-node { background: var(--lilac); outline: 2px dashed color-mix(in srgb, var(--ink) 35%, transparent); outline-offset: 3px; }
+.path li.is-next .path-year { color: var(--ink-2); }
+@media (max-width: 900px) { .path { grid-template-columns: 1fr; } }
+
+/* EDUCATION — three cards */
+.edu-grid { grid-template-columns: repeat(3, 1fr); }
+.edu-grid > div:nth-child(3) { background: var(--mint); }
+@media (max-width: 900px) { .edu-grid { grid-template-columns: 1fr; } }
+
+/* highlight in section notes */
+.section-note .hl { color: var(--ink); font-weight: 800; background: var(--butter); padding: 1px 8px; border-radius: 8px; }
+:root[data-theme="dark"] .section-note .hl { color: #1a1a1a; }

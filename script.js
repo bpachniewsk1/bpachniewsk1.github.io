@@ -419,7 +419,7 @@
     const ideaPane = $('.col-pane[data-pane="0"]', card);
     tabs.forEach((t, i) => t.addEventListener("click", () => {
       tabs.forEach((x, k) => { x.classList.toggle("is-on", k === i); x.setAttribute("aria-selected", String(k === i)); });
-      panes.forEach((x, k) => x.classList.toggle("is-on", k === i));
+      panes.forEach((x) => x.classList.toggle("is-on", x.dataset.pane === t.dataset.pane));
     }));
 
 

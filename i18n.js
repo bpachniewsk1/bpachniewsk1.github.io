@@ -32,7 +32,10 @@
     "path.3p": "Bachelorarbeit zur Simulation von Energiesystemen in Julia. Data Engineering bei SachsenEnergie — Pipelines, Data Warehouses, Dashboards.",
     "path.4y": "2026 → heute",
     "path.4h": "Lernende Maschinen",
-    "path.4p": "Master-Schwerpunkte: <strong>Machine Learning</strong>, <strong>Software Engineering</strong> und <strong>Systems Engineering</strong> — von Transformern für Bildkolorierung bis zu Detektionsmodellen auf einem echten Roboterarm.",
+    "path.5y": "Feb – Jul 2027 · als Nächstes",
+    "path.5h": "Austausch in Taiwan",
+    "path.5p": "Auslandssemester an der <strong>National Cheng Kung University (NCKU)</strong> in Tainan, Taiwan — und die Chance, mein Chinesisch wirklich anzuwenden.",
+    "path.4p":"Master-Schwerpunkte: <strong>Machine Learning</strong>, <strong>Software Engineering</strong> und <strong>Systems Engineering</strong> — von Transformern für Bildkolorierung bis zu Detektionsmodellen auf einem echten Roboterarm.",
 
     "proj.h": "Ausgewählte Projekte",
     "proj.note": "Die kleinen Widgets sind spielerische Illustrationen — zum Ausprobieren.",
@@ -102,7 +105,9 @@
 
 
     "exp.h": "Erfahrung",
-    "exp.note": "3+ Jahre professionelle Erfahrung in der Softwareentwicklung, neben dem Studium.",
+    "exp.note": "<strong class=\"hl\">3+ Jahre</strong> professionelle Erfahrung in der Softwareentwicklung, neben dem Studium.",
+    "edu.3t": "Auslandssemester",
+    "edu.3p": "National Cheng Kung University — geplantes Auslandssemester im Rahmen meines Masters.",
     "exp.1w": "Okt. 2025 — heute",
     "exp.1t": "Werkstudent Data Engineering",
     "exp.1p": "Einer der leitenden Entwickler eines Projektmanagement- und Bauzeitenplanungs-Tools, das gerade unternehmensweit eingeführt wird — vom Requirements Engineering mit Product Ownern bis zur Umsetzung. Außerdem eine automatisierte ETL-Pipeline gebaut, die Altdaten in ein relationales Schema migriert, und Engineering-Praktiken eingeführt, die das Tooling wartbar halten.",
